@@ -22,6 +22,7 @@ In this project, I will deploy a Kubernetes cluster using AWS EKS because it dem
 ## Introduction
 
 <img src="https://cdn.prod.website-files.com/677c400686e724409a5a7409/6790ad949cf622dc8dcd9fe4_nextwork-logo-leather.svg" alt="NextWork" width="300" />
+
 In this project, I will:
 - Launch and connect to an EC2 instance.
 - Create a Kubernetes cluster using Amazon EKS.
