@@ -1,6 +1,8 @@
 # Launch a Kubernetes Cluster
 
-This project guides you through deploying a Kubernetes cluster using Amazon Elastic Kubernetes Service (EKS). It's designed for beginners to gain hands-on experience with Kubernetes, AWS EKS, EC2, CloudFormation, and IAM.
+In this project, I will deploy a Kubernetes cluster using AWS EKS because it demonstrates my ability to manage containerized applications and cloud infrastructure, essential skills for modern DevOps and cloud engineering roles.
+
+![846shots_so](https://github.com/user-attachments/assets/ef7ece51-3f77-40c3-a6ec-c4ff6101be28)
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -19,14 +21,12 @@ This project guides you through deploying a Kubernetes cluster using Amazon Elas
 
 ## Introduction
 
-In this project, you will:
+In this project, I will:
 - Launch and connect to an EC2 instance.
 - Create a Kubernetes cluster using Amazon EKS.
 - Monitor the cluster creation process using AWS CloudFormation.
 - Access and manage the cluster via the AWS Management Console.
 - Test the resilience of your Kubernetes cluster by deleting nodes and observing their automatic recovery.
-
-This project is part of a series aimed at taking you from zero experience to deploying a containerized application using Kubernetes.
 
 ---
 
@@ -42,6 +42,8 @@ Before starting, ensure you have:
 ## Step-by-Step Guide
 
 ### Step 1: Launch and Connect to an EC2 Instance
+
+![897shots_so](https://github.com/user-attachments/assets/d58b500c-b87d-479f-95e6-1b0e2041e74e)
 
 1. **Log in to AWS Management Console** as your IAM Admin user.
 2. Navigate to **EC2** and select **Instances**.
@@ -59,6 +61,8 @@ Before starting, ensure you have:
 ---
 
 ### Step 2: Install `eksctl` and Attempt to Create a Cluster
+
+![270shots_so](https://github.com/user-attachments/assets/77b48302-574d-41ff-8800-a11abdf8ffec)
 
 1. **Install `eksctl`**:
    ```bash
@@ -83,11 +87,13 @@ Before starting, ensure you have:
    --version 1.31 \
    --region [YOUR-REGION]
    ```
-   You'll encounter an error because your EC2 instance lacks the necessary permissions.
+   I'll encounter an error because my EC2 instance lacks the necessary permissions.
 
 ---
 
 ### Step 3: Create an IAM Role and Launch the EKS Cluster
+
+![931shots_so](https://github.com/user-attachments/assets/a4d4acb1-f158-4ce3-890b-74f3b2deed7e)
 
 1. **Create an IAM Role**:
    - Go to the **IAM Console**.
@@ -107,6 +113,8 @@ Before starting, ensure you have:
 
 ### Step 4: Monitor Cluster Creation with CloudFormation
 
+![175shots_so](https://github.com/user-attachments/assets/21830b11-fb77-471e-9577-d3ac9e214bf6)
+
 1. Go to the **CloudFormation Console**.
 2. Observe the stacks being created:
    - `eksctl-nextwork-eks-cluster-cluster` (core cluster resources).
@@ -116,6 +124,8 @@ Before starting, ensure you have:
 ---
 
 ### Step 5: Access the EKS Cluster via AWS Management Console
+
+![233shots_so](https://github.com/user-attachments/assets/4a29126e-c49d-47f3-8fc0-86736bff8021)
 
 1. Go to the **EKS Console**.
 2. Select your cluster (`nextwork-eks-cluster`).
@@ -150,6 +160,8 @@ To avoid unnecessary charges, delete all resources:
 ---
 
 ## Conclusion
+
+![image](https://github.com/user-attachments/assets/74be7f16-867c-40c1-a6a4-37d974116aaf)
 
 Congratulations! We have successfully:
 - Launched and connected to an EC2 instance.
