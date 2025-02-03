@@ -54,9 +54,14 @@ Before starting, ensure you have:
    - Key Pair: Proceed without a key pair (we'll use EC2 Instance Connect).
    - Network Settings: Use the default security group.
 4. Click **Launch Instance**.
-5. Connect to the instance using **EC2 Instance Connect**:
+
+   ![397shots_so](https://github.com/user-attachments/assets/85194006-1445-4597-ab91-c81258b8011f)
+
+6. Connect to the instance using **EC2 Instance Connect**:
    - Select the instance, click **Connect**, and choose **EC2 Instance Connect**.
    - A terminal will open in your browser.
+
+   ![689shots_so](https://github.com/user-attachments/assets/bb4551c5-134e-45fa-b85b-a99a873e1f55)
 
 ---
 
@@ -73,6 +78,7 @@ Before starting, ensure you have:
    ```bash
    eksctl version
    ```
+   ![816shots_so](https://github.com/user-attachments/assets/2e4518af-c7c5-43e6-b2d4-be35e9772859)
 
 2. **Attempt to Create a Cluster**:
    Run the following command (replace `[YOUR-REGION]` with your AWS region, e.g., `us-west-2`):
