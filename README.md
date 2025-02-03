@@ -21,12 +21,28 @@ In this project, I will deploy a Kubernetes cluster using AWS EKS because it dem
 
 ## Introduction
 
+<img src="https://cdn.prod.website-files.com/677c400686e724409a5a7409/6790ad949cf622dc8dcd9fe4_nextwork-logo-leather.svg" alt="NextWork" width="300" />
 In this project, I will:
 - Launch and connect to an EC2 instance.
 - Create a Kubernetes cluster using Amazon EKS.
 - Monitor the cluster creation process using AWS CloudFormation.
 - Access and manage the cluster via the AWS Management Console.
 - Test the resilience of your Kubernetes cluster by deleting nodes and observing their automatic recovery.
+
+
+In this project, I will deploy a Kubernetes cluster using AWS EKS because it demonstrates my ability to manage containerized applications and cloud infrastructure, which are essential skills for modern DevOps and cloud engineering roles.
+
+### What is Amazon EKS?
+
+Amazon EKS is a managed Kubernetes service for deploying and scaling containerized apps. In today’s project, I used EKS to create a Kubernetes cluster, benefiting from its automation for scaling, security, and easy management.
+
+### One thing I didn't expect
+
+One thing I didn’t expect was the complexity of configuring IAM roles for the EC2 instance. Ensuring the right permissions was crucial to avoid errors and allow smooth communication between the instance and the EKS cluster.
+
+### This project took me...
+
+This project took about 30 minutes. The longest part was configuring the IAM roles and permissions for the EC2 instance and EKS, ensuring proper authorization and smooth communication between the resources.
 
 ---
 
@@ -69,6 +85,10 @@ Before starting, ensure you have:
 
 ![270shots_so](https://github.com/user-attachments/assets/77b48302-574d-41ff-8800-a11abdf8ffec)
 
+K8 is a container orchestration platform that automates container deployment, scaling, and management. Companies and developers use Kubernetes to simplify app management, ensure high availability, and reduce manual effort in handling containers.
+
+![Image](http://learn.nextwork.org/calm_rose_bold_plum/uploads/aws-compute-eks1_ff9bfc221)
+
 1. **Install `eksctl`**:
    ```bash
    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
@@ -80,7 +100,10 @@ Before starting, ensure you have:
    ```
    ![816shots_so](https://github.com/user-attachments/assets/2e4518af-c7c5-43e6-b2d4-be35e9772859)
 
-2. **Attempt to Create a Cluster**:
+   I used eksctl to create an EKS cluster. The create cluster command I ran defined the cluster name, region, node type, and the number of nodes. It automated the creation of the control plane, node groups, and networking for my
+   Kubernetes setup.
+
+3. **Attempt to Create a Cluster**:
    Run the following command (replace `[YOUR-REGION]` with your AWS region, e.g., `us-west-2`):
    ```bash
    eksctl create cluster \
@@ -93,7 +116,7 @@ Before starting, ensure you have:
    --version 1.31 \
    --region [YOUR-REGION]
    ```
-   I'll encounter an error because my EC2 instance lacks the necessary permissions.
+   I initially ran into 2 errors while using eksctl. The 1st was because the EC2 instance's IAM role lacked the necessary permissions. The 2nd was due to misconfigured networking setting, like the VPC or security group, blocking proper cluster creation.
 
    ![553shots_so](https://github.com/user-attachments/assets/6ed28f4a-19a9-453d-bf3a-1a08c6ef2a26)
 
@@ -127,6 +150,8 @@ Before starting, ensure you have:
 
 ### Step 4: Monitor Cluster Creation with CloudFormation
 
+CloudFormation helped create my EKS cluster by automating the provisioning of resources. It created VPC, security groups, and subnets required for EKS, ensuring a consistent and repeatable cluster setup.
+
 ![175shots_so](https://github.com/user-attachments/assets/21830b11-fb77-471e-9577-d3ac9e214bf6)
 
 1. Go to the **CloudFormation Console**.
@@ -137,9 +162,13 @@ Before starting, ensure you have:
 
    ![248shots_so](https://github.com/user-attachments/assets/1a092af8-8899-43a9-be7b-3a2c65df939c)
 
+   There was also a second CloudFormation stack for creating the EKS node group. The cluster manages the Kubernetes control plane, while the node group provisions and manages the EC2 instances running the nodes in the cluster.
+
 ---
 
 ### Step 5: Access the EKS Cluster via AWS Management Console
+
+I had to create an IAM access entry to grant permissions for interacting with the EKS cluster. An access entry controls user or service permissions. I set it up by attaching the required policies to the role.
 
 ![233shots_so](https://github.com/user-attachments/assets/4a29126e-c49d-47f3-8fc0-86736bff8021)
 
@@ -158,9 +187,17 @@ Before starting, ensure you have:
 
    ![670shots_so](https://github.com/user-attachments/assets/6decebfa-8103-4ac3-9dff-0082750bd646)
 
+   It took about 10-15 minutes to create my cluster. Since Iʼll create it again in the next project, this process could be sped up by automating the setup with scripts or CloudFormation templates for faster deployment.
+
 ---
 
 ### Secret Mission: Test Cluster Resilience
+
+Did you know you can find your EKS cluster's nodes in Amazon EC2? This is because EKS uses EC2 instances as nodes to run Kubernetes workloads, and these instances are managed by Kubernetes but visible in the EC2 console.
+
+Desired size is the number of nodes you want in your group. Minimum and maximum sizes help ensure availability during low demand and scalability during high demand, allowing Kubernetes to adjust node numbers automatically.
+
+When I deleted my EC2 instances, Kubernetes automatically launched new nodes to maintain the desired cluster state. This is because Kubernetes ensures high availability by adjusting the number of nodes as needed.
 
 1. **Terminate EC2 Instances**:
    - Go to the **EC2 Console**.
