@@ -95,6 +95,8 @@ Before starting, ensure you have:
    ```
    I'll encounter an error because my EC2 instance lacks the necessary permissions.
 
+   ![553shots_so](https://github.com/user-attachments/assets/6ed28f4a-19a9-453d-bf3a-1a08c6ef2a26)
+
 ---
 
 ### Step 3: Create an IAM Role and Launch the EKS Cluster
@@ -107,13 +109,19 @@ Before starting, ensure you have:
    - Attach the **AdministratorAccess** policy.
    - Name the role: `nextwork-eks-instance-role`.
 
+   ![589shots_so](https://github.com/user-attachments/assets/7c5357ce-1ee0-49cb-9d03-320f9e38602e)
+
 2. **Attach the IAM Role to Your EC2 Instance**:
    - Go to the **EC2 Console**.
    - Select your instance, click **Actions** > **Security** > **Modify IAM Role**.
    - Attach the `nextwork-eks-instance-role`.
 
+   ![479shots_so](https://github.com/user-attachments/assets/30478611-9d5d-4275-a276-9084e84093e1)
+
 3. **Create the EKS Cluster**:
    Run the `eksctl create cluster` command again. This time, it should succeed.
+
+   ![857shots_so](https://github.com/user-attachments/assets/96e5dce1-2897-4328-8c1f-76263252629d)
 
 ---
 
