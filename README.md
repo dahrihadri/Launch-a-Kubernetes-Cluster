@@ -135,6 +135,8 @@ Before starting, ensure you have:
    - `eksctl-nextwork-eks-cluster-nodegroup-nextwork-nodegroup` (node group resources).
 3. Monitor the **Events** tab to track progress.
 
+   ![248shots_so](https://github.com/user-attachments/assets/1a092af8-8899-43a9-be7b-3a2c65df939c)
+
 ---
 
 ### Step 5: Access the EKS Cluster via AWS Management Console
@@ -143,10 +145,18 @@ Before starting, ensure you have:
 
 1. Go to the **EKS Console**.
 2. Select your cluster (`nextwork-eks-cluster`).
-3. Grant yourself access:
+
+   ![131shots_so](https://github.com/user-attachments/assets/f71e926f-d58b-4f51-9a2d-278e4966c85c)
+
+4. Grant yourself access:
    - Click **Create Access Entry**.
    - Select your IAM user and attach the `AmazonEKSClusterAdminPolicy`.
-4. Verify that your nodes are listed under the **Compute** tab.
+
+   ![351shots_so](https://github.com/user-attachments/assets/e05d4205-68a6-4710-b733-b6ddb1a6674c)
+
+5. Verify that your nodes are listed under the **Compute** tab.
+
+   ![670shots_so](https://github.com/user-attachments/assets/6decebfa-8103-4ac3-9dff-0082750bd646)
 
 ---
 
@@ -158,6 +168,8 @@ Before starting, ensure you have:
 2. **Observe Kubernetes Recovery**:
    - Kubernetes will automatically replace the terminated nodes.
    - Monitor the new nodes being created in the **EKS Console**.
+
+   ![521shots_so](https://github.com/user-attachments/assets/47ef5d98-275c-4120-b92a-b6581b38f8af)
 
 ---
 
