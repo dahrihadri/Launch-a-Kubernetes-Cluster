@@ -163,7 +163,12 @@ In this project, I will:
 
    ![737shots_so](https://github.com/user-attachments/assets/b90758bc-bc20-4c53-953e-a0390d203652)
 
+   ![938shots_so](https://github.com/user-attachments/assets/61d59ce5-e16f-47f8-b509-6f4735f5aadb)
+
 ### **4.2 Push the Docker Image to ECR**
+
+   ![913shots_so](https://github.com/user-attachments/assets/1954fcc3-37d4-4e1c-9b06-2495abc44d73)
+
 1. Authenticate Docker to your ECR repository:
    ```bash
    aws ecr get-login-password --region YOUR-REGION | docker login --username AWS --password-stdin YOUR-ACCOUNT-ID.dkr.ecr.YOUR-REGION.amazonaws.com
@@ -173,6 +178,10 @@ In this project, I will:
    docker tag nextwork-flask-backend:latest YOUR-ACCOUNT-ID.dkr.ecr.YOUR-REGION.amazonaws.com/nextwork-flask-backend:latest
    docker push YOUR-ACCOUNT-ID.dkr.ecr.YOUR-REGION.amazonaws.com/nextwork-flask-backend:latest
    ```
+
+   ![779shots_so](https://github.com/user-attachments/assets/f113e796-53d9-4106-ba45-a83aee9e2836)
+
+   ![689shots_so](https://github.com/user-attachments/assets/59e1ca80-5d36-4d3a-bdce-27e01b046da4)
 
 ---
 
@@ -212,6 +221,8 @@ Congratulations! We have successfully:
 - Explored the backend code.
 
 ---
+
+In the next project of this Kubernetes series, you'll deploy the backend to see your work come to life in a live app!
 
 ## **Next Steps**
 - Deploy the backend application using Kubernetes manifests.
