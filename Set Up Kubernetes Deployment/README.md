@@ -1,0 +1,202 @@
+# Kubernetes Deployment Project
+
+In this guide, I'll walk through the process of setting up a Kubernetes deployment for a backend application using AWS services like EKS, ECR, and EC2. By the end of this project, I will have deployed a backend application using Kubernetes and gained hands-on experience with containerization, AWS, and Kubernetes.
+
+---
+
+## **Project Overview**
+In this project, I will:
+1. Set up an EC2 instance and an EKS cluster.
+2. Clone a backend application from GitHub.
+3. Build a Docker image of the backend.
+4. Push the Docker image to Amazon ECR.
+5. Troubleshoot common errors and explore the backend code.
+
+---
+
+## **Prerequisites**
+- An AWS account.
+- Basic knowledge of AWS services like EC2, VPC, CLI, and S3.
+- Familiarity with Git, Docker, and Kubernetes.
+
+---
+
+## **Step 1: Set Up EC2 and EKS**
+
+### **1.1 Launch an EC2 Instance**
+1. Log in to the AWS Management Console.
+2. Navigate to the EC2 console.
+3. Click **Launch Instances**.
+   - Name: `nextwork-eks-instance`
+   - AMI: **Amazon Linux 2023 AMI**
+   - Instance Type: **t2.micro**
+   - Network Settings: Use the default security group.
+   - Key Pair: Proceed without a key pair.
+4. Click **Launch Instance**.
+
+### **1.2 Connect to the EC2 Instance**
+1. In the EC2 console, select your instance and click **Connect**.
+2. Use **EC2 Instance Connect** to access the terminal.
+
+### **1.3 Install eksctl**
+1. Run the following command to install `eksctl`:
+   ```bash
+   curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+   sudo mv -v /tmp/eksctl /usr/local/bin
+   ```
+2. Verify the installation:
+   ```bash
+   eksctl version
+   ```
+
+### **1.4 Create an IAM Role for EC2**
+1. Go to the IAM console.
+2. Create a new role:
+   - Trusted Entity: **AWS Service (EC2)**
+   - Attach Policy: **AdministratorAccess**
+   - Role Name: `nextwork-eks-instance-role`
+3. Attach the role to your EC2 instance:
+   - In the EC2 console, select your instance.
+   - Go to **Actions > Security > Modify IAM Role**.
+   - Attach the `nextwork-eks-instance-role`.
+
+### **1.5 Create an EKS Cluster**
+1. Run the following command to create an EKS cluster:
+   ```bash
+   eksctl create cluster \
+     --name nextwork-eks-cluster \
+     --nodegroup-name nextwork-nodegroup \
+     --node-type t2.micro \
+     --nodes 3 \
+     --nodes-min 1 \
+     --nodes-max 3 \
+     --version 1.31 \
+     --region YOUR-REGION
+   ```
+   Replace `YOUR-REGION` with your AWS region code (e.g., `us-west-2`).
+
+---
+
+## **Step 2: Pull the Backend Code from GitHub**
+
+### **2.1 Install Git**
+1. Install Git on your EC2 instance:
+   ```bash
+   sudo dnf update
+   sudo dnf install git -y
+   ```
+2. Verify the installation:
+   ```bash
+   git --version
+   ```
+
+### **2.2 Clone the Repository**
+1. Clone the backend repository:
+   ```bash
+   git clone https://github.com/NatNextWork1/nextwork-flask-backend.git
+   ```
+2. Navigate to the cloned directory:
+   ```bash
+   cd nextwork-flask-backend
+   ```
+
+---
+
+## **Step 3: Build a Docker Image for the Backend**
+
+### **3.1 Install Docker**
+1. Install Docker on your EC2 instance:
+   ```bash
+   sudo yum install -y docker
+   ```
+2. Start Docker:
+   ```bash
+   sudo service docker start
+   ```
+
+### **3.2 Add ec2-user to the Docker Group**
+1. Add `ec2-user` to the Docker group:
+   ```bash
+   sudo usermod -a -G docker ec2-user
+   ```
+2. Restart your EC2 Instance Connect session.
+
+### **3.3 Build the Docker Image**
+1. Navigate to the backend directory:
+   ```bash
+   cd nextwork-flask-backend
+   ```
+2. Build the Docker image:
+   ```bash
+   docker build -t nextwork-flask-backend .
+   ```
+
+---
+
+## **Step 4: Push the Docker Image to Amazon ECR**
+
+### **4.1 Create an ECR Repository**
+1. Run the following command to create an ECR repository:
+   ```bash
+   aws ecr create-repository \
+     --repository-name nextwork-flask-backend \
+     --image-scanning-configuration scanOnPush=true
+   ```
+
+### **4.2 Push the Docker Image to ECR**
+1. Authenticate Docker to your ECR repository:
+   ```bash
+   aws ecr get-login-password --region YOUR-REGION | docker login --username AWS --password-stdin YOUR-ACCOUNT-ID.dkr.ecr.YOUR-REGION.amazonaws.com
+   ```
+2. Tag and push the Docker image:
+   ```bash
+   docker tag nextwork-flask-backend:latest YOUR-ACCOUNT-ID.dkr.ecr.YOUR-REGION.amazonaws.com/nextwork-flask-backend:latest
+   docker push YOUR-ACCOUNT-ID.dkr.ecr.YOUR-REGION.amazonaws.com/nextwork-flask-backend:latest
+   ```
+
+---
+
+## **Step 5: Explore the Backend Code (Secret Mission)**
+
+1. Open the `nextwork-flask-backend` repository on GitHub.
+2. Explore the following files:
+   - `app.py`: The main Flask application.
+   - `Dockerfile`: Instructions for building the Docker image.
+   - `requirements.txt`: Python dependencies for the backend.
+
+---
+
+## **Step 6: Clean Up Resources**
+
+### **6.1 Delete the EKS Cluster**
+1. Run the following command to delete the EKS cluster:
+   ```bash
+   eksctl delete cluster --name nextwork-eks-cluster
+   ```
+
+### **6.2 Terminate the EC2 Instance**
+1. Go to the EC2 console.
+2. Select your instance and click **Instance State > Terminate**.
+
+### **6.3 Delete the ECR Repository**
+1. Go to the ECR console.
+2. Select the `nextwork-flask-backend` repository and click **Delete**.
+
+---
+
+## **Conclusion**
+Congratulations! We have successfully:
+- Set up an EKS cluster.
+- Cloned a backend application from GitHub.
+- Built and pushed a Docker image to Amazon ECR.
+- Explored the backend code.
+
+---
+
+## **Next Steps**
+- Deploy the backend application using Kubernetes manifests.
+- Explore advanced Kubernetes features like scaling and monitoring.
+
+---
+
+**Note:** Always clean up your AWS resources to avoid unnecessary charges.
