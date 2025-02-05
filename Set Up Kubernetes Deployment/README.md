@@ -2,6 +2,8 @@
 
 In this guide, I'll walk through the process of setting up a Kubernetes deployment for a backend application using AWS services like EKS, ECR, and EC2. By the end of this project, I will have deployed a backend application using Kubernetes and gained hands-on experience with containerization, AWS, and Kubernetes.
 
+![163shots_so](https://github.com/user-attachments/assets/79d31949-c9f2-446e-a976-e085deb66d97)
+
 ---
 
 ## **Project Overview**
@@ -21,7 +23,7 @@ In this project, I will:
 
 ---
 
-## **Step 1: Set Up EC2 and EKS**
+## **Step 1: Set Up EC2 and EKS (Straight away to step 2 if you did not terminate resources created in project No. 1)**
 
 ### **1.1 Launch an EC2 Instance**
 1. Log in to the AWS Management Console.
@@ -32,11 +34,16 @@ In this project, I will:
    - Instance Type: **t2.micro**
    - Network Settings: Use the default security group.
    - Key Pair: Proceed without a key pair.
+
+     ![73shots_so](https://github.com/user-attachments/assets/d4fabbf4-8637-4914-98d4-8def86fd7fbc)
+
 4. Click **Launch Instance**.
 
 ### **1.2 Connect to the EC2 Instance**
 1. In the EC2 console, select your instance and click **Connect**.
 2. Use **EC2 Instance Connect** to access the terminal.
+
+   ![824shots_so](https://github.com/user-attachments/assets/73885506-1b40-424b-8a7d-8067a8662bad)
 
 ### **1.3 Install eksctl**
 1. Run the following command to install `eksctl`:
@@ -48,6 +55,7 @@ In this project, I will:
    ```bash
    eksctl version
    ```
+   ![414shots_so](https://github.com/user-attachments/assets/f4546001-5bd7-4d39-a9dd-f71638cba69a)
 
 ### **1.4 Create an IAM Role for EC2**
 1. Go to the IAM console.
@@ -78,6 +86,8 @@ In this project, I will:
 ---
 
 ## **Step 2: Pull the Backend Code from GitHub**
+
+![678shots_so](https://github.com/user-attachments/assets/e2b4e9d8-a376-4624-8bd0-cade68c6305a)
 
 ### **2.1 Install Git**
 1. Install Git on your EC2 instance:
