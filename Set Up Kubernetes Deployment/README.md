@@ -145,9 +145,13 @@ In this project, I will:
    docker build -t nextwork-flask-backend .
    ```
 
+   ![573shots_so](https://github.com/user-attachments/assets/ffe17a67-1080-4a68-be1e-d634a80ba7b3)
+
 ---
 
 ## **Step 4: Push the Docker Image to Amazon ECR**
+
+![837shots_so](https://github.com/user-attachments/assets/aa221afc-ec5e-4299-82d0-172dbc95d9b9)
 
 ### **4.1 Create an ECR Repository**
 1. Run the following command to create an ECR repository:
@@ -156,6 +160,8 @@ In this project, I will:
      --repository-name nextwork-flask-backend \
      --image-scanning-configuration scanOnPush=true
    ```
+
+   ![737shots_so](https://github.com/user-attachments/assets/b90758bc-bc20-4c53-953e-a0390d203652)
 
 ### **4.2 Push the Docker Image to ECR**
 1. Authenticate Docker to your ECR repository:
