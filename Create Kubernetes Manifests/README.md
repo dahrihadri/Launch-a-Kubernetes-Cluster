@@ -1,5 +1,7 @@
 # Kubernetes Deployment for Flask Backend
 
+![201shots_so](https://github.com/user-attachments/assets/44819cc9-bb41-43cd-a187-e60d2f0e48a0)
+
 This project walks you through deploying a Flask-based backend app to a Kubernetes cluster using Amazon Elastic Kubernetes Service (EKS). The app is containerized using Docker, and the Docker image is stored in Amazon Elastic Container Registry (ECR) for easy management and deployment.
 
 ## Table of Contents
@@ -36,6 +38,8 @@ Before you begin, make sure you have the following tools installed and configure
 ---
 
 ## Creating ECR Repository
+
+![73shots_so (1)](https://github.com/user-attachments/assets/cf72b8cd-2f0a-4af1-9c84-a27c23618a27)
 
 1. **Create ECR Repository**  
 Run the following AWS CLI command to create an ECR repository for storing your Docker images:
