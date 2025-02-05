@@ -103,16 +103,20 @@ In this project, I will:
 ### **2.2 Clone the Repository**
 1. Clone the backend repository:
    ```bash
-   git clone https://github.com/NatNextWork1/nextwork-flask-backend.git
+   git clone https://github.com/dahrihadri/Launch-a-Kubernetes-Cluster.git
    ```
 2. Navigate to the cloned directory:
    ```bash
-   cd nextwork-flask-backend
+   cd Launch-a-Kubernetes-Cluster/Set\ Up\ Kubernetes\ Deployment/nextwork-flask-backend/
    ```
+
+   ![618shots_so](https://github.com/user-attachments/assets/c8912a8e-9ca1-41ec-8c2d-556227159925)
 
 ---
 
 ## **Step 3: Build a Docker Image for the Backend**
+
+![806shots_so](https://github.com/user-attachments/assets/f88261ab-85f0-44b8-bf8c-f6e54c81af55)
 
 ### **3.1 Install Docker**
 1. Install Docker on your EC2 instance:
